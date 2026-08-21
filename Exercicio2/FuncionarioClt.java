@@ -3,14 +3,23 @@ public class FuncionarioClt extends Funcionario
     private double valeTransporte;
     private double valeAlimentacao;
 
-    public FuncionarioClt(double valeAlimentacao, double valeTransporte)
+    public FuncionarioClt(String nome, String matricula, double salarioBase, String dataAdmissao,
+                          double valeTransporte, double valeAlimentacao)
     {
+        super(nome, matricula, salarioBase, dataAdmissao);
         this.valeTransporte = valeTransporte;
         this.valeAlimentacao = valeAlimentacao;
     }
 
-    public CalcularDesconto(double salarioBase)
+    @Override
+    public double calcularSalario()
     {
-        salarioBase += 50;
+        return super.calcularSalario() + valeTransporte + valeAlimentacao;
+    }
+
+    @Override
+    public double calcularDesconto()
+    {
+        return super.calcularDesconto() + 50;
     }
 }

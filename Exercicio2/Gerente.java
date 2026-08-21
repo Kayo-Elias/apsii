@@ -1,16 +1,29 @@
-public class Gerente extends FuncionarioClt ()
+public class Gerente extends FuncionarioClt
 {
     private int tamanhoEquipe;
-    private int percentualBonus;
+    private double percentualBonus;
 
-    public Gerente()
+    public Gerente(String nome, String matricula, double salarioBase, String dataAdmissao,
+                   double valeTransporte, double valeAlimentacao, int tamanhoEquipe,
+                   double percentualBonus)
     {
-        super()
+        super(nome, matricula, salarioBase, dataAdmissao, valeTransporte, valeAlimentacao);
+        this.tamanhoEquipe = tamanhoEquipe;
+        this.percentualBonus = percentualBonus;
     }
 
-    public CalcularDesconto(double salarioBase)
+    @Override
+    public double calcularSalario()
     {
+        return super.calcularSalario() + getSalarioBase() * percentualBonus;
+    }
+
+    @Override
+    public double calcularDesconto()
+    {
+        double desconto = super.calcularDesconto();
         if (tamanhoEquipe > 10)
-            super(salarioBase += 100);
+            desconto += 100;
+        return desconto;
     }
 }
